@@ -2,6 +2,7 @@ int countPairs(vector<int> &arr, int target) {
         // Code here
          sort(arr.begin(),arr.end());
          unordered_map<int,int> mp;
+
          int cnt=0;
          for(int i=0;i<arr.size();i++){
               int d=target-arr[i];
