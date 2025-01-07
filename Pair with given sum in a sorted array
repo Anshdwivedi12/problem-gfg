@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    int countPairs(vector<int> &arr, int target) {
+        // Complete the function
+        map<int,int>m;
+        int count = 0;
+        for(auto it:arr){
+            if(m[target-it]){
+                count+=m[target-it];
+            }
+            m[it]++;
+        }
+        return count;
+    }
+};
