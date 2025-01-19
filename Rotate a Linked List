@@ -1,0 +1,25 @@
+Node* rotate(Node* head, int k) {
+        // Your code here
+        // For counting total no of nodes;
+        int len=1;
+        Node* temp=head;
+        while(temp->next != nullptr){
+            temp=temp->next;
+            len++;
+        }
+        k=k%len;
+        if(k==0){
+            return head;
+        }
+        Node* start=head;
+        Node* end=head;
+        Node* result=nullptr;
+        for(int i=0;i<k-1;i++){
+            end=end->next;
+        }
+        // cout<<end->data<<endl;
+        result=end->next;
+        temp->next=start;
+        end->next=nullptr;
+        return result;
+    }
