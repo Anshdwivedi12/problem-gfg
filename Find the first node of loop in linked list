@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    Node* findFirstNode(Node* head) {
+        // your code here
+        set<Node*> st; //set initialise
+        
+        Node* temp = head; //node for traversal
+        while(temp){
+            if(st.find(temp) != st.end()) return temp; //loop detected return the node it will be the first node always
+            st.insert(temp); //keep adding the node not the node->data
+            temp = temp->next; //traverse
+        }
+        
+        return NULL;
+    }
+};
