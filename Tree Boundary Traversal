@@ -1,0 +1,37 @@
+class Solution {
+  public:
+        void solveLeft(Node* root, vector<int>& ans){
+        if(!root || !root->left && !root->right) return;
+        
+        ans.push_back(root->data);
+        
+        if(root->left) solveLeft(root->left, ans);
+        else solveLeft(root->right, ans);
+    }
+    void solveLeaf(Node* root, vector<int>& ans){
+        if(!root) return;
+        
+        if(!root->left && !root->right) ans.push_back(root->data);
+        solveLeaf(root->left, ans);
+        solveLeaf(root->right, ans);
+    }
+    void solveRight(Node* root, vector<int>& ans){
+        if(!root || !root->left && !root->right) return;
+        
+        if(root->right) solveRight(root->right, ans);
+        else solveRight(root->left, ans);
+        ans.push_back(root->data);
+    }
+    vector<int> boundaryTraversal(Node *root) {
+        // code here
+        vector<int> ans;
+        if(!root) return ans;
+        ans.push_back(root->data);
+        if(!root->left && !root->right) return ans;
+        solveLeft(root->left, ans);
+        solveLeaf(root, ans);
+        solveRight(root->right, ans);
+        
+        return ans;
+    }
+};
