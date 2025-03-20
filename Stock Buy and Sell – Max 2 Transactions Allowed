@@ -1,0 +1,31 @@
+class Solution {
+  public:
+    int fun(int i, int t, int hold, int &n, int &k, vector<int> &p, vector<vector<vector<int>>> &dp){
+        if(i>=n || t>=k)
+            return 0;
+        if(dp[i][t][hold]!=-1)
+            return dp[i][t][hold];
+        
+        if(!hold){
+            int buy = -p[i] + fun(i+1, t, 1, n, k, p, dp);
+            int skip = fun(i+1, t, 0, n, k, p, dp);
+            return dp[i][t][hold] = max(buy, skip);
+        }
+        else{
+            int sell = p[i] + fun(i+1, t+1, 0, n, k, p, dp);
+            int skip = fun(i+1, t, 1, n, k, p, dp);
+            return dp[i][t][hold] = max(sell, skip);
+        }
+        
+            
+    }
+  
+    int maxProfit(vector<int> &prices) {
+        // code here
+        int n = prices.size();
+        vector<vector<vector<int>>> dp(n, vector<vector<int>>(3, vector<int>(2,-1)));
+        int k = 2;
+        return fun(0, 0, 0, n, k, prices, dp);
+        
+    }
+};
