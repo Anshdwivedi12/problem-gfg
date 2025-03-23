@@ -1,0 +1,29 @@
+class Solution {
+  public:
+   
+
+  int solve(string &d,int n,int i,vector<int>&vec){
+      if(i==n)
+      return 1;
+      if(d[i]=='0')
+      return 0;
+      if(vec[i]!=-1)
+      return vec[i];
+      int one=solve(d,n,i+1,vec);
+      int two=0;
+      if(i!=n-1 &&(d[i]=='1' || d[i]=='2' && d[i+1]<='6')){
+          two=solve(d,n,i+2,vec);
+      }
+      return vec[i]=one+two;
+      
+  }
+    int countWays(string &d) {
+        // Code here
+        int n=d.size();
+         // vec.assign(n+1,vector<int>(cl+1,-1));
+         vector<int>vec(n+1, -1);
+
+
+        return solve(d,n,0,vec);
+    }
+};
