@@ -1,0 +1,18 @@
+class Solution {
+public:
+    double trimMean(vector<int>& arr) {
+        sort(arr.begin(),arr.end());
+        int n=arr.size();
+        int p=(n*5)/100;
+       // vector<int>ans;
+        double s=0;
+        for(int i=p;i<n-p;i++){
+            s=s+arr[i];
+
+        }
+        int k=n-(2*p);
+    
+        return (double)s/k;
+        
+    }
+};
