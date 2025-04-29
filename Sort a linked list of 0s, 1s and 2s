@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    Node* segregate(Node* head) {
+        // code here
+        vector<int>ans;
+        Node*curr=head;
+        while(curr!=NULL){
+            ans.push_back(curr->data);
+            curr=curr->next;
+        }
+        sort(ans.begin(),ans.end());
+        Node*t=new Node(ans[0]);
+        head=t;
+        for(int i=1;i<ans.size();i++){
+            Node*temp=new Node(ans[i]);
+            t->next=temp;
+            t=t->next;
+        }
+        return head;
+    }
+};
